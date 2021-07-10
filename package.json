@@ -1,0 +1,43 @@
+{
+  "name": "niconico-dl.js",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.js",
+  "description": "This is library which can get download link of Niconico Video or download it.",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn clean && tsc -p .",
+    "clean": "rm -rf dist",
+    "lint": "eslint --ext .ts --ignore-path .gitignore ."
+  },
+  "author": "y-chan <y-chan@y-chan.dev>",
+  "homepage": "https://github.com/y-chan/niconico-dl.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/y-chan/niconico-dl.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@types/node": "^15.12.1",
+    "@types/node-fetch": "^2.5.11",
+    "node-fetch": "^2.6.1",
+    "node-html-parser": "^4.0.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.24",
+    "@typescript-eslint/eslint-plugin": "^4.28.1",
+    "@typescript-eslint/parser": "^4.28.1",
+    "eslint": "^7.29.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "jest": "^27.0.6",
+    "prettier": "^2.3.2",
+    "ts-jest": "^27.0.3",
+    "tsconfig-paths": "^3.10.1"
+  }
+}
