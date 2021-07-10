@@ -5,8 +5,8 @@ on:
   - push
 
 jobs:
-  eslint:
-    name: check_eslint_error
+  ci:
+    name: Run CI
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
