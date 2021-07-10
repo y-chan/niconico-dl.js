@@ -6,6 +6,7 @@
   "description": "This is library which can get download link of Niconico Video or download it.",
   "license": "MIT",
   "scripts": {
+    "example": "ts-node -r tsconfig-paths/register example/index.ts",
     "build": "yarn clean && tsc -p .",
     "clean": "rm -rf dist",
     "lint": "eslint --ext .ts --ignore-path .gitignore ."

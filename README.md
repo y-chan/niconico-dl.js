@@ -16,5 +16,8 @@ Or for Yarn users:
 yarn add niconico-dl.js
 ```
 
+## Example
+Please see [example/index.ts](example/index.ts).
+
 ## License
 This library is [MIT License](LICENSE).
