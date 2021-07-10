@@ -9,6 +9,7 @@
     "example": "ts-node -r tsconfig-paths/register example/index.ts",
     "build": "yarn clean && tsc -p .",
     "clean": "rm -rf dist",
+    "test": "jest",
     "lint": "eslint --ext .ts --ignore-path .gitignore ."
   },
   "author": "y-chan <y-chan@y-chan.dev>",
