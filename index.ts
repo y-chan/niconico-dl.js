@@ -209,21 +209,26 @@ class NiconicoDL {
       await this.getVideoInfo()
     }
     const session = (this.data as NiconicoAPIData).media.delivery.movie.session
+    // 720p or 360p
     let videoQualityNum = 0
-    if (session.videos.length > 1) {
-      if (this.quality === 'low') {
-        videoQualityNum = session.videos.length - 1
-      } else {
-        session.videos.forEach((video, index) => {
-          if (
-            (video.includes('720') && this.quality === 'high') ||
-            (video.includes('480') && this.quality === 'middle')
-          ) {
-            videoQualityNum = index
-          }
-        })
-      }
+    // acc_64kbps or acc_192kbps
+    let audioQualityNum = 0
+    if (this.quality === 'low') {
+      // 360p_low
+      videoQualityNum = session.videos.length - 1
+      // acc_64kbps
+      audioQualityNum = session.audios.length - 1
+    } else {
+      session.videos.forEach((video, index) => {
+        if (
+          (video.includes('720') && this.quality === 'high') ||
+          (video.includes('480') && this.quality === 'middle')
+        ) {
+          videoQualityNum = index
+        }
+      })
     }
+    console.log(session.videos, session.audios)
     return {
       session: {
         content_type: 'movie',
@@ -233,7 +238,7 @@ class NiconicoDL {
               {
                 src_id_to_mux: {
                   video_src_ids: [session.videos[videoQualityNum]],
-                  audio_src_ids: [session.audios[0]],
+                  audio_src_ids: [session.audios[audioQualityNum]],
                 },
               },
             ],
