@@ -24,7 +24,7 @@ describe('Niconico-DL.js Test by Jest', () => {
       result.on('finish', () => {
         niconico.stop()
         expect(sha256Checksum(allData).toString('hex')).toBe(
-          'e18eca95b60adde111e581304a1ce3bf39a5784bdebd7433a789faf5b1e1802b'
+          '8cd8e26eeefbb266b50a0e3781cb6646eaf1885414fc2f14e39e5cfbbb02b67e'
         )
         done()
       })
