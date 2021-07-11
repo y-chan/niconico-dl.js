@@ -164,7 +164,7 @@ class NiconicoDL {
   private heartBeat: Timeout | undefined
   private result: NiconicoAPIResponceSession | undefined
   private heartBeatBeforeTime: number = 0
-  private quality: DownloadQuality
+  private readonly quality: DownloadQuality
 
   constructor(url: string, quality: DownloadQuality = 'high') {
     if (!isValidURL(url)) {
