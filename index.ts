@@ -224,7 +224,6 @@ class NiconicoDL {
         })
       }
     }
-    console.log(session.videos, videoQualityNum)
     return {
       session: {
         content_type: 'movie',
