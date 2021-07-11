@@ -317,11 +317,6 @@ class NiconicoDL {
     const res = await fetch(url.toString(), {
       headers: mp4Headers,
     })
-    const size = Number(res.headers.get('content-length'))
-    let allData = Buffer.from('', 'hex')
-    res.body.on('data', (data: Buffer) => {
-      allData = Buffer.concat([allData, data])
-    })
     return res.body
   }
 
