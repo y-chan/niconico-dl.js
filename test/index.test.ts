@@ -10,8 +10,11 @@ jest.setTimeout(600 * 1000)
 
 describe('Niconico-DL.js Test by Jest', () => {
   test('try download video and validate checksum', (done) => {
-    // 【東方アレンジ】 U.N.オーエンは彼女なのか？ -MG & GXN- 【東方紅魔郷】
-    const niconico = new NiconicoDL('https://www.nicovideo.jp/watch/sm28353945')
+    const niconico = new NiconicoDL(
+      // 【東方アレンジ】 U.N.オーエンは彼女なのか？ -MG & GXN- 【東方紅魔郷】
+      'https://www.nicovideo.jp/watch/sm28353945',
+      'low'
+    )
 
     let allData = Buffer.alloc(0)
     void niconico.download().then((result) => {

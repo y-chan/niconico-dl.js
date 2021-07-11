@@ -130,6 +130,8 @@ interface NiconicoAPIResponceSession {
   }
 }
 
+type DownloadQuality = 'high' | 'middle' | 'low'
+
 const niconicoRegexp = RegExp(
   // https://github.com/ytdl-org/youtube-dl/blob/a8035827177d6b59aca03bd717acb6a9bdd75ada/youtube_dl/extractor/niconico.py#L162
   'https?://(?:www\\.|secure\\.|sp\\.)?nicovideo\\.jp/watch/(?<id>(?:[a-z]{2})?[0-9]+)'
@@ -162,12 +164,14 @@ class NiconicoDL {
   private heartBeat: Timeout | undefined
   private result: NiconicoAPIResponceSession | undefined
   private heartBeatBeforeTime: number = 0
+  private quality: DownloadQuality
 
-  constructor(url: string) {
+  constructor(url: string, quality: DownloadQuality = 'high') {
     if (!isValidURL(url)) {
       throw Error('Invalid url')
     }
     this.videoURL = url
+    this.quality = quality
   }
 
   async getVideoInfo(): Promise<VideoInfo> {
@@ -205,6 +209,22 @@ class NiconicoDL {
       await this.getVideoInfo()
     }
     const session = (this.data as NiconicoAPIData).media.delivery.movie.session
+    let videoQualityNum = 0
+    if (session.videos.length > 1) {
+      if (this.quality === 'low') {
+        videoQualityNum = session.videos.length - 1
+      } else {
+        session.videos.forEach((video, index) => {
+          if (
+            (video.includes('720') && this.quality === 'high') ||
+            (video.includes('480') && this.quality === 'middle')
+          ) {
+            videoQualityNum = index
+          }
+        })
+      }
+    }
+    console.log(session.videos, videoQualityNum)
     return {
       session: {
         content_type: 'movie',
@@ -213,7 +233,7 @@ class NiconicoDL {
             content_src_ids: [
               {
                 src_id_to_mux: {
-                  video_src_ids: [session.videos[0]],
+                  video_src_ids: [session.videos[videoQualityNum]],
                   audio_src_ids: [session.audios[0]],
                 },
               },
