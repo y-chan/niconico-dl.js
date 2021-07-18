@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "example": "ts-node -r tsconfig-paths/register example/index.ts",
-    "build": "yarn clean && tsc -p .",
+    "build": "yarn clean && tsc -p tsconfig.build.json",
     "clean": "rm -rf dist",
     "test": "jest",
     "lint": "eslint --ext .ts --ignore-path .gitignore ."
