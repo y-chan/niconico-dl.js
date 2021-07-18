@@ -154,7 +154,7 @@ const headers = {
   'Accept-Language': 'ja,en;q=0.9,en-GB;q=0.8,en-US;q=0.7',
 }
 
-export function isValidURL(url: string) {
+export function isValidURL(url: string): boolean {
   return niconicoRegexp.test(url)
 }
 
@@ -194,7 +194,7 @@ class NiconicoDL {
     }
     const fixedString = matchResult[0].rawAttributes['data-api-data'].replace(
       /&(lt|gt|amp|quot|#x27|#x60);/g,
-      function (match) {
+      function (match: string): string {
         // @ts-ignore
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return patterns[match]
