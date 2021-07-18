@@ -1,5 +1,6 @@
 import fetch from 'node-fetch'
 import { parse } from 'node-html-parser'
+import internal from 'stream'
 import Timeout = NodeJS.Timeout
 
 interface NiconicoAPIData {
@@ -334,12 +335,18 @@ class NiconicoDL {
     return (this.result as NiconicoAPIResponceSession).session.content_uri
   }
 
-  async download(): Promise<NodeJS.ReadableStream> {
+  async download(newTypeStream: true): Promise<internal.Readable>
+  async download(newTypeStream: false): Promise<NodeJS.ReadableStream>
+  async download(): Promise<NodeJS.ReadableStream>
+  async download(newTypeStream: boolean = false) {
     const url = await this.getDownloadLink()
     const mp4Headers = Object.assign(headers, { 'Content-Type': 'video/mp4' })
-    const res = await fetch(url.toString(), {
+    const res = await fetch(url, {
       headers: mp4Headers,
     })
+    if (newTypeStream) {
+      return new internal.Readable().wrap(res.body)
+    }
     return res.body
   }
 
