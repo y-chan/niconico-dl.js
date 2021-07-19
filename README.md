@@ -24,3 +24,6 @@ Please see [example/index.ts](example/index.ts).
 
 ## License
 This library is [MIT License](LICENSE).
+
+## Release Notes
+Please read [here](RELEASE-NOTES.md).
