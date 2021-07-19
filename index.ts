@@ -35,11 +35,32 @@ interface NiconicoAPIData {
     }
     [key: string]: any
   }
-  video: VideoInfo
+  video: OriginalVideoInfo
+  owner: OwnerInfo
   [key: string]: any
 }
 
-export interface VideoInfo {
+export interface OwnerInfo {
+  id: number
+  nickname: string
+  iconUrl: string
+  channel: string | null
+  live: {
+    id: string
+    title: string
+    url: string
+    begunAt: string
+    isVideoLive: boolean
+    videoLiveOnAirStartTime: string | null
+    thumbnailUrl: string | null
+  } | null
+  isVideoPublic: boolean
+  isMylistsPublic: boolean
+  videoLiveNotice: null
+  viewer: number | null
+}
+
+interface OriginalVideoInfo {
   id: string
   title: string
   description: string
@@ -70,6 +91,10 @@ export interface VideoInfo {
   watchableUserTypeForPayment: string
   commentableUserTypeForPayment: string
   [key: string]: any
+}
+
+export interface VideoInfo extends OriginalVideoInfo {
+  owner: OwnerInfo
 }
 
 interface HeartBeatData {
@@ -202,7 +227,10 @@ class NiconicoDL {
       }
     )
     this.data = JSON.parse(fixedString) as NiconicoAPIData
-    return this.data.video
+    console.log(this.data.owner)
+    return Object.assign(this.data.video, {
+      owner: this.data.owner,
+    }) as VideoInfo
   }
 
   async prepareHeartBeat(): Promise<HeartBeatData> {
