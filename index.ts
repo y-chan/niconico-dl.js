@@ -363,19 +363,35 @@ class NiconicoDL {
     return (this.result as NiconicoAPIResponceSession).session.content_uri
   }
 
-  async download(newTypeStream: true): Promise<internal.Readable>
-  async download(newTypeStream: false): Promise<NodeJS.ReadableStream>
+  async download(
+    newTypeStream: true,
+    autoStopHeartBeat: boolean
+  ): Promise<internal.Readable>
+  async download(
+    newTypeStream: false,
+    autoStopHeartBeat: boolean
+  ): Promise<NodeJS.ReadableStream>
   async download(): Promise<NodeJS.ReadableStream>
-  async download(newTypeStream: boolean = false) {
+  async download(
+    newTypeStream: boolean = false,
+    autoStopHeartBeat: boolean = true
+  ) {
     const url = await this.getDownloadLink()
     const mp4Headers = Object.assign(headers, { 'Content-Type': 'video/mp4' })
     const res = await fetch(url, {
       headers: mp4Headers,
     })
+    let binary: internal.Readable | NodeJS.ReadableStream = res.body
     if (newTypeStream) {
-      return new internal.Readable().wrap(res.body)
+      binary = new internal.Readable().wrap(binary)
     }
-    return res.body
+    if (autoStopHeartBeat) {
+      binary.on('finish', () => {
+        // automatically stop heartbeat
+        this.stop()
+      })
+    }
+    return binary
   }
 
   stop(): void {

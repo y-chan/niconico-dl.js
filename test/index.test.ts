@@ -22,7 +22,6 @@ describe('Niconico-DL.js Test by Jest', () => {
         allData = Buffer.concat([allData, data])
       })
       result.on('finish', () => {
-        niconico.stop()
         expect(sha256Checksum(allData).toString('hex')).toBe(
           '8496a27f98b51ab80bb134a916df5d4109535cfea2c62dc187526aa974370e9e'
         )

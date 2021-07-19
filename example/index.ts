@@ -12,8 +12,4 @@ let videoId = ''
 void niconico.getVideoInfo().then((info) => (videoId = info.id))
 void niconico.download().then((result) => {
   result.pipe(fs.createWriteStream(`${videoId}.mp4`))
-  result.on('finish', () => {
-    // stop heart beat
-    niconico.stop()
-  })
 })
