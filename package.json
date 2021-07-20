@@ -1,6 +1,6 @@
 {
   "name": "niconico-dl.js",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "dist/index.js",
   "types": "dist/index.d.js",
   "description": "This is library which can get download link of Niconico Video or download it.",
@@ -10,7 +10,8 @@
     "build": "yarn clean && tsc -p tsconfig.build.json",
     "clean": "rm -rf dist",
     "test": "jest",
-    "lint": "eslint --ext .ts --ignore-path .gitignore ."
+    "lint": "eslint --ext .ts --ignore-path .gitignore .",
+    "prepare": "yarn build"
   },
   "author": "y-chan <y-chan@y-chan.dev>",
   "homepage": "https://github.com/y-chan/niconico-dl.js",

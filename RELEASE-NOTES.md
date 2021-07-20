@@ -1,5 +1,11 @@
 # Release Note
 
+## 1.1.1 - Fix publish miss
+  - Sorry, the following features weren't included in the previous version...
+    - Included in the video information that the owner information of video
+  - Prevented from publication of mistake build files(add "prepare" script to package.json)
+  - Stop heartbeat automatically(you can select the option not to stop heartbeat automatically)
+
 ## 1.1.0 - Selectable stream format(old or new) and gettable video owner info
   - This library is using "node-fetch" library.
     The "node-fetch" library's response body return "NodeJS.ReadableStream"(old format stream).
