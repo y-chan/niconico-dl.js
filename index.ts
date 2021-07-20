@@ -365,11 +365,11 @@ class NiconicoDL {
 
   async download(
     newTypeStream: true,
-    autoStopHeartBeat: boolean
+    autoStopHeartBeat?: boolean
   ): Promise<internal.Readable>
   async download(
     newTypeStream: false,
-    autoStopHeartBeat: boolean
+    autoStopHeartBeat?: boolean
   ): Promise<NodeJS.ReadableStream>
   async download(): Promise<NodeJS.ReadableStream>
   async download(

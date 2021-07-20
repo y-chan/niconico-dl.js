@@ -1,6 +1,6 @@
 {
   "name": "niconico-dl.js",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "main": "dist/index.js",
   "types": "dist/index.d.js",
   "description": "This is library which can get download link of Niconico Video or download it.",

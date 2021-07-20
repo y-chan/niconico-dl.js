@@ -1,5 +1,7 @@
 # Release Note
 
+## 1.1.2 - Fix issue which is stop heartbeat automatically option wasn't optional
+
 ## 1.1.1 - Fix publish miss
   - Sorry, the following features weren't included in the previous version...
     - Included in the video information that the owner information of video
