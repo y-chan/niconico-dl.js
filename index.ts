@@ -227,7 +227,6 @@ class NiconicoDL {
       }
     )
     this.data = JSON.parse(fixedString) as NiconicoAPIData
-    console.log(this.data.owner)
     return Object.assign(this.data.video, {
       owner: this.data.owner,
     }) as VideoInfo
