@@ -1,5 +1,8 @@
 # Release Note
 
+## 1.1.3 - Fix miss
+  - Removed debug log which I forgot to remove.
+
 ## 1.1.2 - Fix miss
   -  Fix issue which is stop heartbeat automatically option wasn't optional.
 
